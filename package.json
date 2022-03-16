@@ -1,0 +1,23 @@
+{
+  "name": "crud22030701",
+  "version": "1.0.0",
+  "description": "Example of storing data in JSON file.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brayam1993/CRUD_22030701.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brayam1993/CRUD_22030701/issues"
+  },
+  "homepage": "https://github.com/Brayam1993/CRUD_22030701#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
