@@ -4,7 +4,8 @@
   "description": "Example of storing data in JSON file.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/app.js",
+    "dev01": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,14 @@
   },
   "homepage": "https://github.com/Brayam1993/CRUD_22030701#readme",
   "dependencies": {
+    "body-parser": "^1.19.2",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "express-myconnection": "^1.0.4",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
