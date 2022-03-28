@@ -2,6 +2,9 @@ const express = require('express')
 const fs = require('fs')
 
 const app = express()
+// Start code of Crud MySql DB
+
+// Start code of Crud in Json File
 
 //this line is required to parse the request body
 app.use(express.json())
