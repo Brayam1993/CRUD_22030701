@@ -22,3 +22,5 @@ User.create = function (newUser, result) {
         };
     });    
 };
+
+module.exports = User;
