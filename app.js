@@ -1,15 +1,28 @@
 const express = require('express')
 const fs = require('fs')
+const bodyParser = require('body-parser');
 
 const app = express()
 // Start code of Crud MySql DB
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json())
+
+// define a root route
+app.get('/', (req, res) => {
+    res.send("Hello World");
+  });
+
 
 // Start code of Crud in Json File
 
 //this line is required to parse the request body
 app.use(express.json())
 
-/* Create - POST method */
+// Create - POST method 
 app.post('/user/add', (req, res) => {
     //get the existing user data
     const existUsers = getUserData()
@@ -37,13 +50,13 @@ app.post('/user/add', (req, res) => {
 
 })
 
-/* Read - GET method */
+// Read - GET method 
 app.get('/user/list', (req, res) => {
     const users = getUserData()
     res.send(users)
 })
 
-/* Update - Patch method */
+// Update - Patch method 
 app.patch('/user/update/:username', (req, res) => {
     //get the username from url
     const username = req.params.username
@@ -72,7 +85,7 @@ app.patch('/user/update/:username', (req, res) => {
     res.send({success: true, msg: 'User data updated successfully'})
 })
 
-/* Delete - Delete method */
+// Delete - Delete method 
 app.delete('/user/delete/:username', (req, res) => {
     const username = req.params.username
 
@@ -94,7 +107,7 @@ app.delete('/user/delete/:username', (req, res) => {
 })
 
 
-/* util functions */
+// util functions 
 
 //read the user data from json file
 const saveUserData = (data) => {
@@ -108,10 +121,10 @@ const getUserData = () => {
     return JSON.parse(jsonData)    
 }
 
-/* util functions ends */
-
+// util functions ends 
 
 //configure the server port
 app.listen(3000, () => {
     console.log('Server runs on port 3000')
 })
+
