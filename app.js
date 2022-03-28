@@ -16,6 +16,8 @@ app.get('/', (req, res) => {
     res.send("Hello World");
   });
 
+// Require MySql user routes
+const employeeRoutes = require('./mysql_src/routes/user.routes')  
 
 // Start code of Crud in Json File
 
