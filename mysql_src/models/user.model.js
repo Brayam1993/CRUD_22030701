@@ -1,5 +1,5 @@
 
-var dbConn = require('./../../config/db.config');
+var dbConn = require('./../../mysql_config/db.config');
 
 //User Object create
 var User = function(user){
