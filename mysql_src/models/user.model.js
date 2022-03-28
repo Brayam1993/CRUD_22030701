@@ -1,0 +1,24 @@
+
+var dbConn = require('./../../config/db.config');
+
+//User Object create
+var User = function(user){
+    this.username   = user.username;
+    this.fullname   = user.fullname;
+    this.age        = user.age;
+    this.password   = user.password;
+    this.created_at = new Date();
+    this.updated_at = new Date();
+};
+
+User.create = function (newUser, result) {
+    dbConn.query("INSERT INTO users set ?", newUser, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(err, null);
+        }else{
+            console.log(res.insertId);
+            result(null, res.insertId);
+        };
+    });    
+};
