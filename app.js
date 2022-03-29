@@ -1,8 +1,22 @@
-const express = require('express')
-const fs = require('fs')
+/*
+const express = require('express');
+const fs = require('fs');
 const bodyParser = require('body-parser');
+*/
+const mongoose = require('mongoose');
+const uri = 'mongodb://127.0.0.1:27017/node_mongodb_crud_users_db'
+// const app = express()
+// Start code of Crud Mongodb DB
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
-const app = express()
+mongoose.connection.on('open', _ => {
+    console.log('Mongo Database is connected to', uri);
+});
+
+/*
 // Start code of Crud MySql DB
 
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -132,3 +146,4 @@ const getUserData = () => {
 app.listen(3000, () => {
     console.log('Server runs on port 3000')
 })
+*/
