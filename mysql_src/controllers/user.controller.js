@@ -1,4 +1,5 @@
 
+const res = require('express/lib/response');
 const User = require('../models/user.model');
 
 exports.create = function (req, res) {
@@ -24,3 +25,11 @@ exports.findAll = function(req, res) {
         res.send(user);
     });
 };
+
+exports.findById = function(req, res) {
+    User.findById(req.params.id, function(err, user) {
+        if (err)
+        res.send(err);
+        res.json(user);
+    });
+}
