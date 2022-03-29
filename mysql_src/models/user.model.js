@@ -23,4 +23,16 @@ User.create = function (newUser, result) {
     });    
 };
 
+User.findAll = function (result) {
+    dbConn.query("Select * from users", function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }else{
+            console.log('users :', res);
+            result(null, res);
+        };
+    });
+};
+
 module.exports = User;
