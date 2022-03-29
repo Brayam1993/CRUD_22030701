@@ -3,18 +3,20 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 */
-const mongoose = require('mongoose');
-const uri = 'mongodb://127.0.0.1:27017/node_mongodb_crud_users_db'
-// const app = express()
-// Start code of Crud Mongodb DB
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+
+// Request connection mongodb
+require('./mongodb_config/db.config.js');
+
+const user = require('./mongodb_src/models/user.model.js')
+
+const user01 = new user({
+    fullname: 'Brayam Ismael Méndez Tapia',
+    age: 28,
+    username: 'Brayam',
+    password: 123 
 });
 
-mongoose.connection.on('open', _ => {
-    console.log('Mongo Database is connected to', uri);
-});
+console.log(user01);
 
 /*
 // Start code of Crud MySql DB
