@@ -57,4 +57,15 @@ User.update = function(id, user, result){
     });
 };
 
+User.delete = function(id, result){
+    dbConn.query("DELETE FROM users WHERE id = ?", [id], function (err, res){
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }else{
+            result(null, res);
+        };
+    });
+};
+
 module.exports = User;

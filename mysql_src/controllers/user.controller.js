@@ -45,3 +45,11 @@ exports.update = function (req, res) {
         });
     };
 };
+
+exports.delete = function(req, res) {
+    User.delete( req.params.id, function(err, user){
+        if(err)
+        res.send(err);
+        res.json({ error:false, message: 'Employee successfully deleted' });
+    });
+};
