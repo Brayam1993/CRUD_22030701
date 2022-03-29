@@ -46,4 +46,15 @@ User.findById = function (id, result) {
     });
 };
 
+User.update = function(id, user, result){
+    dbConn.query("UPDATE users SET username=?,fullname=?,age=?,password=? WHERE id = ?", [user.username,user.fullname,user.age,user.password, id], function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }else{
+            result(null, res);
+        };
+    });
+};
+
 module.exports = User;
