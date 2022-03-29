@@ -8,4 +8,7 @@ router.post('/', userController.create);
 // Retrieve all mysql users
 router.get('/', userController.findAll);
 
+// Retrieve a single employee with id
+router.get('/:id', userController.findById);
+
 module.exports = router
