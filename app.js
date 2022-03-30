@@ -2,6 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const app = express()
 */
 
 // Request connection mongodb
@@ -14,6 +15,11 @@ const user01 = new user({
     age: 28,
     username: 'Brayam',
     password: 123 
+});
+
+user01.save((err, document) => {
+    if(err) console.log(err);
+    console.log(document);
 });
 
 console.log(user01);
