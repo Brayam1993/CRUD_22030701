@@ -1,28 +1,15 @@
-/*
 const express = require('express');
+/*
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const app = express()
 */
+
+const app = express()
 
 // Request connection mongodb
 require('./mongodb_config/db.config.js');
 
-const user = require('./mongodb_src/models/user.model.js')
-
-const user01 = new user({
-    fullname: 'Brayam Ismael Méndez Tapia',
-    age: 28,
-    username: 'Brayam',
-    password: 123 
-});
-
-user01.save((err, document) => {
-    if(err) console.log(err);
-    console.log(document);
-});
-
-console.log(user01);
+const postRoutes = require('./mongodb_src/controllers/user.controller.js');
 
 /*
 // Start code of Crud MySql DB
@@ -149,9 +136,9 @@ const getUserData = () => {
 }
 
 // util functions ends 
+*/
 
 //configure the server port
 app.listen(3000, () => {
     console.log('Server runs on port 3000')
 })
-*/
