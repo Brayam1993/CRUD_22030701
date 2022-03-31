@@ -9,7 +9,7 @@ const app = express()
 // Request connection mongodb
 require('./mongodb_config/db.config.js');
 
-const postRoutes = require('./mongodb_src/controllers/user.controller.js');
+const postsRoutes = require('./mongodb_src/controllers/user.controller.js');
 
 /*
 // Start code of Crud MySql DB
@@ -32,10 +32,15 @@ const userRoutes = require('./mysql_src/routes/user.routes')
 app.use('/api/v1/users', userRoutes);
 
 // Start code of Crud in Json File
+*/
+
+// using like i don't know how
+app.use('/api/posts' , postsRoutes);
 
 //this line is required to parse the request body
 app.use(express.json())
 
+/*
 // Create - POST method 
 app.post('/user/add', (req, res) => {
     //get the existing user data
