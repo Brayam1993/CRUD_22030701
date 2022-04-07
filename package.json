@@ -4,8 +4,7 @@
   "description": "Example of storing data in JSON file.",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "dev01": "nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
