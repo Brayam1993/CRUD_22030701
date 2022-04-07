@@ -1,8 +1,8 @@
 const express = require('express');
-/*
+
 const fs = require('fs');
 const bodyParser = require('body-parser');
-*/
+
 
 const app = express()
 
@@ -11,7 +11,7 @@ require('./mongodb_config/db.config.js');
 
 const postsRoutes = require('./mongodb_src/controllers/user.controller.js');
 
-/*
+
 // Start code of Crud MySql DB
 
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -32,7 +32,7 @@ const userRoutes = require('./mysql_src/routes/user.routes')
 app.use('/api/v1/users', userRoutes);
 
 // Start code of Crud in Json File
-*/
+
 
 // using like i don't know how
 app.use('/api/posts' , postsRoutes);
@@ -40,7 +40,7 @@ app.use('/api/posts' , postsRoutes);
 //this line is required to parse the request body
 app.use(express.json())
 
-/*
+
 // Create - POST method 
 app.post('/user/add', (req, res) => {
     //get the existing user data
@@ -141,7 +141,7 @@ const getUserData = () => {
 }
 
 // util functions ends 
-*/
+
 
 //configure the server port
 app.listen(3000, () => {
