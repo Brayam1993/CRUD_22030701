@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Posts = require('../models/user.model.js');
 
-//@desc Get all posts
+// Get all posts
 router.get('/', async (req, res) => {
     try {
         const posts = await User.find();
@@ -13,5 +13,8 @@ router.get('/', async (req, res) => {
         res.status(400).json({mesg: err})
     }
 });
+
+// Post new user in mongodb
+router.post(userController.new);
 
 module.exports = router;

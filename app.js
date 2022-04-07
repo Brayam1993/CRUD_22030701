@@ -9,7 +9,7 @@ const app = express()
 // Request connection mongodb
 require('./mongodb_config/db.config.js');
 
-const postsRoutes = require('./mongodb_src/controllers/user.controller.js');
+const postsRoutes = require('./mongodb_src/routes/user.routes.js');
 
 
 // Start code of Crud MySql DB
@@ -33,7 +33,7 @@ app.use('/api/v1/users', userRoutes);
 
 // Start code of Crud in Json File
 
-
+// This line belong to Mongodb
 // using like i don't know how
 app.use('/api/posts' , postsRoutes);
 
