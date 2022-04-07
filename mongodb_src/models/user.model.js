@@ -1,11 +1,14 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose');
 
-const userSchema = new Schema({
+var userSchema = mongoose.Schema({
     fullname: String,
     age: Number,
     username: String,
     password: Number    
 });
 
-module.exports = mongoose.model('User', userSchema);
+var Mgdb = module.exports = mongoose.model('user_mgdb', userSchema);
+
+module.exports.get = function (callback, limit) {
+    Mgdb.find(callback).limit(limit);
+};

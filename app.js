@@ -35,7 +35,7 @@ app.use('/api/v1/users', userRoutes);
 
 // This line belong to Mongodb
 // using like i don't know how
-app.use('/api/posts' , postsRoutes);
+app.use('/api' , postsRoutes);
 
 //this line is required to parse the request body
 app.use(express.json())

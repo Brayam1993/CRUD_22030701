@@ -3,4 +3,8 @@ const routermongodb = express.Router();
 const userControllerMongodb = require('../controllers/user.controller');
 
 // Create a new Mongodb user
-routermongodb.post(userControllerMongodb.new);
+routermongodb.route('/posts')
+        //.get(userControllerMongodb.index);
+        .post(userControllerMongodb.new);
+
+module.exports = routermongodb;
