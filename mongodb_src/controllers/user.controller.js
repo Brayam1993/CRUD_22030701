@@ -1,20 +1,23 @@
-const express = require('express');
-const router = express.Router();
-
-const Posts = require('../models/user.model.js');
-
-// Get all posts
-router.get('/', async (req, res) => {
-    try {
-        const posts = await User.find();
-        if(!posts) throw Error('No Items');
-        res.status(200).json(posts);
-    }catch(err) {
-        res.status(400).json({mesg: err})
-    }
-});
+const postsMongodb = require('../models/user.model.js');
 
 // Post new user in mongodb
-router.post(userController.new);
+exports.new = function (req, res) {
+    var mgdb = new Mgdb();
+    mgdb.username = req.body.username ? req.body.username : mgdb.username;
+    mgdb.fullname = req.body.fullname;
+    mgdb.age      = req.body.age;
+    mgdb.password = req.body.password;
 
-module.exports = router;
+    // save the usermongodb an check for errors
+    mgdb.save(function (err) {
+        //
+        //
+        res.json({
+            message: 'New User Mongodb created!',
+            data: user
+        });
+
+    });
+};
+
+
