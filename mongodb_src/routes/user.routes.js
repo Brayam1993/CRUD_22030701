@@ -4,7 +4,7 @@ const userControllerMongodb = require('../controllers/user.controller');
 
 // Create a new Mongodb user
 routermongodb.route('/posts')
-        //.get(userControllerMongodb.index);
+        .get(userControllerMongodb.index)
         .post(userControllerMongodb.new);
 
 module.exports = routermongodb;
