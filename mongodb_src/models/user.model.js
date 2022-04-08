@@ -7,8 +7,8 @@ var userSchema = mongoose.Schema({
     password: Number    
 });
 
-var Mgdb = module.exports = mongoose.model('user_mgdb', userSchema);
+var user_mgdb = module.exports = mongoose.model('user_mgdb', userSchema);
 
 module.exports.get = function (callback, limit) {
-    Mgdb.find(callback).limit(limit);
+    user_mgdb.find(callback).limit(limit);
 };

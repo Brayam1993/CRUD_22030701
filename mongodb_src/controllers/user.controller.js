@@ -1,8 +1,26 @@
-const postsMongodb = require('../models/user.model.js');
+const { UCS2_PERSIAN_CI } = require('mysql/lib/protocol/constants/charsets');
+user_mgdb = require('../models/user.model.js');
+
+exports.index = function (req, res) {
+    Mgdb.get(function (err, books) {
+        if (err) {
+            res.json({
+                status: "error",
+                message: err,
+            });
+        };
+        res.json({
+            status: "success",
+            message: "Books retrieved successfully",
+            data: users 
+        })
+
+    });
+};
 
 // Post new user in mongodb
 exports.new = function (req, res) {
-    var mgdb = new Mgdb();
+    var mgdb = new user_mgdb();
     mgdb.username = req.body.username ? req.body.username : mgdb.username;
     mgdb.fullname = req.body.fullname;
     mgdb.age      = req.body.age;
@@ -14,7 +32,7 @@ exports.new = function (req, res) {
         //
         res.json({
             message: 'New User Mongodb created!',
-            data: user
+            data: mgdb
         });
 
     });
