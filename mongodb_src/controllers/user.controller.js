@@ -38,4 +38,16 @@ exports.new = function (req, res) {
     });
 };
 
-
+// Delete a user in mongodb
+exports.delete = function (req, res) {
+    user_mgdb.deleteOne({
+        _id: req.params.book_id
+    }, function (err, userMgdbOtroMas) {
+        if (err)
+            res.send(err);
+        res.json({
+            status: "success",
+            message: 'Mongo User Deleted'
+        });    
+    });
+};

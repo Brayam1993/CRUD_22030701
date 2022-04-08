@@ -7,4 +7,7 @@ routermongodb.route('/posts')
         .get(userControllerMongodb.index)
         .post(userControllerMongodb.new);
 
+routermongodb.route('/posts/:posts_id')
+        .delete(userControllerMongodb.delete);        
+
 module.exports = routermongodb;
