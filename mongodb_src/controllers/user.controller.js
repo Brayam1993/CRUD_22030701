@@ -1,4 +1,4 @@
-const { UCS2_PERSIAN_CI } = require('mysql/lib/protocol/constants/charsets');
+
 user_mgdb = require('../models/user.model.js');
 
 exports.index = function (req, res) {
@@ -35,6 +35,27 @@ exports.new = function (req, res) {
             data: mgdb
         });
 
+    });
+};
+
+exports.update = function (req, res) {
+    user_mgdb.findById(req.params.mgdb_id, function (err, book) {
+        if (err)
+            res.send(err);
+        user_mgdb.username = req.body.username ? req.body.username : user_mgdb.username;
+        user_mgdb.fullname = req.body.fullname;
+        user_mgdb.age      = req.body.age;
+        user_mgdb.password = req.body.password;
+        
+        // save the mongo user and check for errors
+        mgdb.save(function (err) {
+            if (err)
+                res.json(err);
+            res.json({
+                message: 'Mongo User Updated',
+                data: mgdb
+            });    
+        });
     });
 };
 
