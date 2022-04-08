@@ -2,7 +2,7 @@ const { UCS2_PERSIAN_CI } = require('mysql/lib/protocol/constants/charsets');
 user_mgdb = require('../models/user.model.js');
 
 exports.index = function (req, res) {
-    user_mgdb.get(function (err, user_mgdb_otro) {
+    user_mgdb.get(function (err, userMgdbOtro) {
         if (err) {
             res.json({
                 status: "error",
@@ -12,7 +12,7 @@ exports.index = function (req, res) {
         res.json({
             status: "success",
             message: "Books retrieved successfully",
-            data: user_mgdb_otro 
+            data: userMgdbOtro 
         })
 
     });
