@@ -1,6 +1,7 @@
-
+/* eslint indent: 1 */
 var dbConn = require('./../../mysql_config/db.config');
 
+// eslint-disable-next-line
 //User Object create
 var User = function(user){
     this.username   = user.username;
