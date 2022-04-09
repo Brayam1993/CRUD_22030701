@@ -1,4 +1,4 @@
-
+/* eslint indent: 1 */
 var dbConn = require('./../../mysql_config/db.config');
 
 //User Object create
