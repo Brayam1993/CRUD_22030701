@@ -1,16 +1,16 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable consistent-return */
 const express = require('express');
 
 const fs = require('fs');
 const bodyParser = require('body-parser');
 
-
-const app = express()
+const app = express();
 
 // Request connection mongodb
-require('./mongodb_config/db.config.js');
+require('./mongodb_config/db.config');
 
-const postsRoutes = require('./mongodb_src/routes/user.routes.js');
-
+const postsRoutes = require('./mongodb_src/routes/user.routes');
 
 // Start code of Crud MySql DB
 
@@ -18,15 +18,15 @@ const postsRoutes = require('./mongodb_src/routes/user.routes.js');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // define a root route
 app.get('/', (req, res) => {
-    res.send("Hello World");
-  });
+  res.send('Hello World');
+});
 
 // Require MySql user routes
-const userRoutes = require('./mysql_src/routes/user.routes')  
+const userRoutes = require('./mysql_src/routes/user.routes');
 
 // using as middleware
 app.use('/api/v1/users', userRoutes);
@@ -35,115 +35,113 @@ app.use('/api/v1/users', userRoutes);
 
 // This line belong to Mongodb
 // using like i don't know how
-app.use('/api' , postsRoutes);
+app.use('/api', postsRoutes);
 
-//this line is required to parse the request body
-app.use(express.json())
+// this line is required to parse the request body
+app.use(express.json());
 
-
-// Create - POST method 
+// Create - POST method
+// eslint-disable-next-line consistent-return
 app.post('/user/add', (req, res) => {
-    //get the existing user data
-    const existUsers = getUserData()
-    
-    //get the new user data from post request
-    const userData = req.body
+  // get the existing user data
+  const existUsers = getUserData();
 
-    //check if the userData fields are missing
-    if (userData.fullname == null || userData.age == null || userData.username == null || userData.password == null) {
-        return res.status(401).send({error: true, msg: 'User data missing'})
-    }
-    
-    //check if the username exist already
-    const findExist = existUsers.find( user => user.username === userData.username )
-    if (findExist) {
-        return res.status(409).send({error: true, msg: 'username already exist'})
-    }
+  // get the new user data from post request
+  const userData = req.body;
 
-    //append the user data
-    existUsers.push(userData)
+  // check if the userData fields are missing
+  // eslint-disable-next-line max-len
+  if (userData.fullname == null || userData.age == null || userData.username == null || userData.password == null) {
+    return res.status(401).send({ error: true, msg: 'User data missing' });
+  }
 
-    //save the new user data
-    saveUserData(existUsers);
-    res.send({success: true, msg: 'User data added successfully'})
+  // check if the username exist already
+  const findExist = existUsers.find((user) => user.username === userData.username);
+  if (findExist) {
+    return res.status(409).send({ error: true, msg: 'username already exist' });
+  }
 
-})
+  // append the user data
+  existUsers.push(userData);
 
-// Read - GET method 
+  // save the new user data
+  saveUserData(existUsers);
+  res.send({ success: true, msg: 'User data added successfully' });
+});
+
+// Read - GET method
 app.get('/user/list', (req, res) => {
-    const users = getUserData()
-    res.send(users)
-})
+  const users = getUserData();
+  res.send(users);
+});
 
-// Update - Patch method 
+// Update - Patch method
 app.patch('/user/update/:username', (req, res) => {
-    //get the username from url
-    const username = req.params.username
+  // get the username from url
+  const { username } = req.params;
 
-    //get the update data
-    const userData = req.body
+  // get the update data
+  const userData = req.body;
 
-    //get the existing user data
-    const existUsers = getUserData()
+  // get the existing user data
+  const existUsers = getUserData();
 
-    //check if the username exist or not       
-    const findExist = existUsers.find( user => user.username === username )
-    if (!findExist) {
-        return res.status(409).send({error: true, msg: 'username not exist'})
-    }
+  // check if the username exist or not
+  const findExist = existUsers.find((user) => user.username === username);
+  if (!findExist) {
+    return res.status(409).send({ error: true, msg: 'username not exist' });
+  }
 
-    //filter the userdata
-    const updateUser = existUsers.filter( user => user.username !== username )
+  // filter the userdata
+  const updateUser = existUsers.filter((user) => user.username !== username);
 
-    //push the updated data
-    updateUser.push(userData)
+  // push the updated data
+  updateUser.push(userData);
 
-    //finally save it
-    saveUserData(updateUser)
+  // finally save it
+  saveUserData(updateUser);
 
-    res.send({success: true, msg: 'User data updated successfully'})
-})
+  res.send({ success: true, msg: 'User data updated successfully' });
+});
 
-// Delete - Delete method 
+// Delete - Delete method
 app.delete('/user/delete/:username', (req, res) => {
-    const username = req.params.username
+  const { username } = req.params;
 
-    //get the existing userdata
-    const existUsers = getUserData()
+  // get the existing userdata
+  const existUsers = getUserData();
 
-    //filter the userdata to remove it
-    const filterUser = existUsers.filter( user => user.username !== username )
+  // filter the userdata to remove it
+  const filterUser = existUsers.filter((user) => user.username !== username);
 
-    if ( existUsers.length === filterUser.length ) {
-        return res.status(409).send({error: true, msg: 'username does not exist'})
-    }
+  if (existUsers.length === filterUser.length) {
+    return res.status(409).send({ error: true, msg: 'username does not exist' });
+  }
 
-    //save the filtered data
-    saveUserData(filterUser)
+  // save the filtered data
+  saveUserData(filterUser);
 
-    res.send({success: true, msg: 'User removed successfully'})
-    
-})
+  res.send({ success: true, msg: 'User removed successfully' });
+});
 
+// util functions
 
-// util functions 
-
-//read the user data from json file
+// read the user data from json file
 const saveUserData = (data) => {
-    const stringifyData = JSON.stringify(data)
-    fs.writeFileSync('users.json', stringifyData)
-}
+  const stringifyData = JSON.stringify(data);
+  fs.writeFileSync('users.json', stringifyData);
+};
 
-//get the user data from json file
+// get the user data from json file
 const getUserData = () => {
-    const jsonData = fs.readFileSync('users.json')
-    return JSON.parse(jsonData)    
-}
+  const jsonData = fs.readFileSync('users.json');
+  return JSON.parse(jsonData);
+};
 
-// util functions ends 
+// util functions ends
 
-
-//configure the server port
+// configure the server port
 app.listen(3000, () => {
-    console.log('Server runs on port 3000')
-})
+  // eslint-disable-next-line no-console
+  console.log('Server runs on port 3000');
+});
