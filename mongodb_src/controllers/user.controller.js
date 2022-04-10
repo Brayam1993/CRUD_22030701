@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable func-names */
 const UserMgdb = require('../models/user.model');
 
@@ -34,19 +35,29 @@ exports.new = function (req, res) {
   });
 };
 
-exports.update = function (req, res) {
-  UserMgdb.findById(req.params.mgdb_id, (err) => {
-    if (err) res.send(err);
-    UserMgdb.username = req.body.username ? req.body.username : UserMgdb.username;
-    UserMgdb.fullname = req.body.fullname;
-    UserMgdb.age = req.body.age;
-    UserMgdb.password = req.body.password;
+exports.view = function (req, res) {
+  UserMgdb.findById(req.params.posts_id, (err, mgdb) => {
+    if (err) { res.send(err); }
+    res.json({
+      message: '1 user found!',
+      data: mgdb,
+    });
+  });
+};
 
-    UserMgdb.save(() => {
+exports.update = function (req, res) {
+  UserMgdb.findById(req.params.posts_id, (err, mgdb) => {
+    if (err) res.send(err);
+    mgdb.username = req.body.username ? req.body.username : UserMgdb.username;
+    mgdb.fullname = req.body.fullname;
+    mgdb.age = req.body.age;
+    mgdb.password = req.body.password;
+
+    mgdb.save(() => {
       if (err) res.json(err);
       res.json({
         message: 'Mongo User Updated',
-        data: UserMgdb,
+        data: mgdb,
       });
     });
   });
@@ -55,7 +66,7 @@ exports.update = function (req, res) {
 // Delete a user in mongodb
 exports.delete = function (req, res) {
   UserMgdb.deleteOne({
-    _id: req.params.book_id,
+    _id: req.params.posts_id,
   }, (err) => {
     if (err) res.send(err);
     res.json({
