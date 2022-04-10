@@ -9,8 +9,7 @@ const dbConn = mysql.createConnection({
   database: 'node_mysql_crud_users_db',
 });
 
-dbConn.connect((err) => {
-  if (err) throw err;
+dbConn.connect(() => {
   console.log('MySql Database Connected!');
 });
 

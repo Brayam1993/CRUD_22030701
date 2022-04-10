@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "lint": "eslint **/*.js --fix"
+    "lint": "eslint **/*.js"
   },
   "repository": {
     "type": "git",
