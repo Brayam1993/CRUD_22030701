@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const mysql = require('mysql');
 
 // local mysql db connection

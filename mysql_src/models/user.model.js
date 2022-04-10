@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable func-names */
 /* eslint indent: 1 */
 const dbConn = require('../../mysql_config/db.config');
 
