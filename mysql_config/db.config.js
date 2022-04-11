@@ -5,11 +5,12 @@ const mysql = require('mysql');
 const dbConn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'contraseña',
+  password: 'root',
   database: 'node_mysql_crud_users_db',
 });
 
-dbConn.connect(() => {
+dbConn.connect((err) => {
+  if (err) throw err;
   console.log('MySql Database Connected!');
 });
 
