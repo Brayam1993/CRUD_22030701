@@ -35,13 +35,34 @@ exports.new = function (req, res) {
   });
 };
 
+// works with logic!
+// exports.view = function (req, res) {
+//   UserMgdb.findById(req.params.posts_id, (err, mgdb) => {
+//     if (err) {
+//       res.send(err);
+//     } else {
+//       res.json({
+//         message: '1 user found!',
+//         data: mgdb,
+//       });
+//     }
+//   });
+// };
+
 exports.view = function (req, res) {
   UserMgdb.findById(req.params.posts_id, (err, mgdb) => {
-    if (err) { res.send(err); }
-    res.json({
-      message: '1 user found!',
-      data: mgdb,
-    });
+    try {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json({
+        message: '1 user found!',
+        data: mgdb,
+      });
+    } catch (ex) {
+      console.log('exception handle ++++', ex);
+    }
   });
 };
 
