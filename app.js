@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable consistent-return */
 const express = require('express');
 
 const fs = require('fs');
@@ -7,12 +5,17 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+/* MongoDB */
 // Request connection mongodb
 require('./mongodb_config/db.config');
 
 const postsRoutes = require('./mongodb_src/routes/user.routes');
 
-// Start code of Crud MySql DB
+// This line belong to Mongodb
+// using like i don't know how
+app.use('/api', postsRoutes);
+
+/* MySql DB */
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,17 +34,13 @@ const userRoutes = require('./mysql_src/routes/user.routes');
 // using as middleware
 app.use('/api/v1/users', userRoutes);
 
-// Start code of Crud in Json File
-
-// This line belong to Mongodb
-// using like i don't know how
-app.use('/api', postsRoutes);
+/* Json File */
 
 // this line is required to parse the request body
 app.use(express.json());
 
 // Create - POST method
-// eslint-disable-next-line consistent-return
+
 app.post('/user/add', (req, res) => {
   // get the existing user data
   const existUsers = getUserData();
@@ -50,7 +49,6 @@ app.post('/user/add', (req, res) => {
   const userData = req.body;
 
   // check if the userData fields are missing
-  // eslint-disable-next-line max-len
   if (userData.fullname == null || userData.age == null || userData.username == null || userData.password == null) {
     return res.status(401).send({ error: true, msg: 'User data missing' });
   }
@@ -142,6 +140,5 @@ const getUserData = () => {
 
 // configure the server port
 app.listen(3000, () => {
-  // eslint-disable-next-line no-console
   console.log('Server runs on port 3000');
 });
