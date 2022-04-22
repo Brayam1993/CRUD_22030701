@@ -1,0 +1,4 @@
+{
+    "coverageDirectory": "./coverage",
+    "coverageReporters": ["clover", "json", "lcov", ["text", {"skipFull": true}]]
+}
