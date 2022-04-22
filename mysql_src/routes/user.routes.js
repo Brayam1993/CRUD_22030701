@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const userController = require('../controllers/user.controller.js');
+const userController = require('../controllers/user.controller');
 
 // Create a new mysql user
 router.post('/', userController.create);

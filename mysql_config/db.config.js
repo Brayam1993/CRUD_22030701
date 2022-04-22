@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 const mysql = require('mysql');
 
 // local mysql db connection
 const dbConn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'contraseña',
+  password: 'root',
   database: 'node_mysql_crud_users_db',
 });
 

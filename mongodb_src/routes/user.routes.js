@@ -9,6 +9,7 @@ routermongodb.route('/posts')
   .post(userControllerMongodb.new);
 
 routermongodb.route('/posts/:posts_id')
+  .get(userControllerMongodb.view)
   .put(userControllerMongodb.update)
   .delete(userControllerMongodb.delete);
 

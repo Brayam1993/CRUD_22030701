@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
@@ -7,8 +8,9 @@ const userSchema = mongoose.Schema({
   password: Number,
 });
 
-const user_mgdb = module.exports = mongoose.model('user_mgdb', userSchema);
+module.exports = mongoose.model('user_mgdb', userSchema);
+const userMgdb = module.exports;
 
 module.exports.get = function (callback, limit) {
-  user_mgdb.find(callback).limit(limit);
+  userMgdb.find(callback).limit(limit);
 };

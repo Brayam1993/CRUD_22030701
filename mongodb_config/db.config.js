@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
 
 const uri = 'mongodb://127.0.0.1:27017/node_mongodb_crud_users_db';
@@ -8,6 +9,6 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
 });
 
-mongoose.connection.on('open', (_) => {
+mongoose.connection.on('open', () => {
   console.log('Mongo Database is connected to', uri);
 });
