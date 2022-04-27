@@ -1,6 +1,14 @@
 const config = {
   coverageDirectory: './coverage',
-  coverageReporters: ['clover', 'json', 'lcov', ['text', { skipFull: true }]],
+  coverageReporters: [
+    'lcov',
+    'html',
+    'json',
+    'text',
+    'text-summary',
+  ],
+  verbose: false,
+  collectCoverage: true,
   projects: [
     /**
      * MySQL tests
