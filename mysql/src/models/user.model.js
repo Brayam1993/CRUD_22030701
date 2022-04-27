@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 /* eslint indent: 1 */
-const dbConn = require('../config/db.config');
+const dbConn = require('../configs/db.config');
 
 // eslint-disable-next-line
 //User Object create
