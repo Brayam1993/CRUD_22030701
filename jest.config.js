@@ -3,11 +3,11 @@ const config = {
   coverageReporters: ['clover', 'json', 'lcov', ['text', { skipFull: true }]],
   projects: [
     /**
-     * Server-related tests such as services or middlewares
+     * MySQL tests
      */
     {
-      displayName: 'API AJAX',
-      testMatch: ['<rootDir>/api/**/*.test.js'],
+      displayName: 'MYSQL API',
+      testMatch: ['<rootDir>/mysql/**/*.test.js'],
       testEnvironment: 'node',
     },
   ],
