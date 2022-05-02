@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 // Require MySql user routes
-const userRoutes = require('./mysql_src/routes/user.routes');
+const userRoutes = require('./mysql/src/routes/user.routes');
 
 // using as middleware
 app.use('/api/v1/users', userRoutes);

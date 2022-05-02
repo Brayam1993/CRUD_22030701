@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "lint": "eslint **/*.js",
-    "test": "jest --config=jest.config.json --coverage",
+    "test": "jest --config=jest.config.js --coverage",
     "test:watch": "jest --watch"
   },
   "repository": {
@@ -30,13 +30,16 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
+    "deepmerge": "^4.2.2",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.1.4",
     "jest": "^27.5.1",
+    "node-mocks-http": "^1.11.0",
     "nodemon": "^2.0.15"
   }
 }
